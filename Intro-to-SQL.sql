@@ -74,15 +74,17 @@ select * from employees
 
 --4. Indexing Columns
 select table_name "Table",
-    index_name "Index",
-    comlumn_name "Column",
-    column_position "Position"
-from user_ind_columns
+       index_name "Index",
+       column_name "Column",
+       column_position "Position"
+from  user_ind_columns
 where table_name = 'EMPLOYEES' or
       table_name = 'DEPARTMENTS'
 order by table_name, column_name, column_position
 
 --5. Querying Data
+
+
 --6. Adding Columns
 --7. Querying the Oracle Data Dictionary
 --8. Updating Data
