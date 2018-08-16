@@ -55,6 +55,9 @@ SELECT value
 FROM SYS.NLS_DATABASE_PARAMETERS
 WHERE parameter = 'NLS_DATE_FORMAT';
 
+-- CHANGE THE CURRENT SESSIONS DATE FORMAT 
+ALTER SESSION SET NLS_DATE_FORMAT='DD-MON-YYYY';
+
 --Using Two Filters in an SQL WHERE Clause
 SELECT *
 FROM employee
@@ -98,4 +101,160 @@ SELECT DISTINCT last_name, department_id
 FROM employee;
 
 --IN and NOT IN
-lesson 18
+SELECT * FROM employee
+WHERE last_name IN ('Foster', 'Elliot', 'Mitchell', 'Perry', 'Lawson');
+
+SELECT * FROM employee
+WHERE last_name NOT IN ('Foster', 'Elliot', 'Mitchell', 'Perry', 'Lawson');
+
+--RANGE - BETWEEN and NOT BETWEEN
+SELECT * FROM employee
+WHERE hire_date >= '01-JAN-2016' AND hire_date <= '31-DEC-2016';
+
+SELECT * FROM employee
+WHERE hire_date BETWEEN '01-JAN-2016' AND '31-DEC-2016';
+
+SELECT * FROM employee
+WHERE employee_id BETWEEN 10 AND 20;
+
+SELECT * FROM employee
+WHERE hire_date NOT BETWEEN '01-JAN-2014' AND '31-DEC-2016';
+
+--ALL Keyword
+SELECT * FROM employee
+WHERE salary > ALL( 30000, 40000, 50000);
+
+--ANY Keyword
+SELECT * FROM employee
+WHERE salary > ANY (30000, 40000, 50000);
+
+--Sorting Results with the ORDER BY Clause
+SELECT employee_id, first_name, last_name, salary, hire_date
+FROM employee
+ORDER BY last_name DESC;
+
+SELECT employee_id, first_name, last_name, salary, hire_date
+FROM employee
+ORDER BY salary ASC;
+
+SELECT employee_id, first_name, last_name, salary, hire_date
+FROM employee
+ORDER BY last_name DESC;
+
+--Ordering By Multiple Columns
+SELECT * from employee
+ORDER BY last_name ASC, first_name ASC;
+
+SELECT * from employee
+ORDER BY hire_date ASC, employee_id DESC;
+
+SELECT * from employee
+ORDER BY last_name ASC, hire_date ASC, first_name ASC;
+
+--Set Operators and UNION
+SELECT first_name, last_name
+FROM employee
+UNION
+SELECT first_name, last_name
+FROM customer;
+
+SELECT 'employee', first_name, last_name
+FROM employee
+UNION
+SELECT 'customer', first_name, last_name
+FROM customer
+ORDER BY last_name;
+
+SELECT 'employee', first_name, last_name
+FROM employee
+UNION
+SELECT 'customer', first_name, last_name
+FROM customer
+ORDER BY 1, 2;
+
+--Union ALL
+SELECT 'employee', first_name, last_name
+FROM employee
+UNION ALL
+SELECT 'customer', first_name, last_name
+FROM customer
+ORDER BY 1, 2;
+
+--INTERSECT Operator
+SELECT first_name, last_name
+FROM employee
+INTERSECT
+SELECT first_name, last_name
+FROM customer;
+
+--MINUS
+SELECT first_name, last_name
+FROM employee
+MINUS
+SELECT first_name, last_name
+FROM customer;
+
+--Three or More Sets At Once
+SELECT first_name, last_name, salary
+FROM employee
+WHERE salary BETWEEN 28000 AND 40000
+UNION 
+SELECT first_name, last_name, salary
+FROM employee
+WHERE salary BETWEEN 20000 AND 30000
+INTERSECT
+SELECT first_name, last_name, salary
+FROM employee
+WHERE salary BETWEEN 30000 AND 55000
+MINUS
+SELECT first_name, last_name, salary
+FROM employee
+WHERE salary BETWEEN 31000 AND 33000;
+
+SELECT first_name, last_name, salary
+FROM employee
+WHERE salary BETWEEN 28000 AND 40000
+UNION 
+(SELECT first_name, last_name, salary
+FROM employee
+WHERE salary BETWEEN 20000 AND 30000
+INTERSECT
+SELECT first_name, last_name, salary
+FROM employee
+WHERE salary BETWEEN 30000 AND 55000)
+MINUS
+SELECT first_name, last_name, salary
+FROM employee
+WHERE salary BETWEEN 31000 AND 33000;
+
+--What are Functions?
+IM here
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
