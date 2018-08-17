@@ -227,8 +227,86 @@ SELECT first_name, last_name, salary
 FROM employee
 WHERE salary BETWEEN 31000 AND 33000;
 
---What are Functions?
-IM here
+--Using COUNT in Other Ways
+SELECT COUNT(*) FROM employee
+WHERE first_name = 'Barbara';
+
+SELECT COUNT(salary) FROM employee;
+
+SELECT COUNT(DISTINCT last_name)
+FROM employee;
+
+--Counting Data
+SELECT COUNT(*)
+FROM employee;
+
+--Counting Data Within Groups with GROUP BY
+SELECT last_name, COUNT(*)
+FROM employee
+GROUP BY last_name;
+
+SELECT department_id, COUNT(*)
+FROM product
+GROUP BY department_id;
+
+--GROUP BY with WHERE and ORDER BY
+SELECT last_name, COUNT(*)
+FROM employee
+WHERE last_name LIKE 'B%'
+GROUP BY last_name
+ORDER BY COUNT(*) DESC;
+
+SELECT salary, COUNT(*)
+FROM employee
+WHERE salary > 100000
+GROUP BY salary
+ORDER BY salary ASC;
+
+--GROUP BY with Multiple Columns
+SELECT last_name, department_id, COUNT(*)
+FROM employee
+GROUP BY last_name, department_id
+ORDER BY COUNT(*) DESC;
+
+SELECT first_name, last_name, COUNT(*)
+FROM employee
+GROUP BY first_name, last_name
+ORDER BY first_name, last_name;
+
+SELECT first_name, last_name, department_id, COUNT(*)
+FROM employee
+GROUP BY first_name, last_name, department_id
+ORDER BY first_name, last_name, department_id;
+
+--GROUP BY with HAVING
+SELECT last_name, COUNT(*)
+FROM employee
+GROUP BY last_name
+HAVING COUNT(*) > 1;
+
+SELECT first_name, last_name, COUNT(*)
+FROM employee
+GROUP BY first_name, last_name
+HAVING COUNT(*) > 1;
+
+--The SUM Function
+SELECT SUM(salary)
+FROM employee;
+
+SELECT department_id, SUM(salary)
+FROM employee
+GROUP BY department_id
+ORDER BY SUM(salary) DESC;
+
+SELECT SUM(price)
+FROM product;
+
+
+--Using the MAX and MIN functions
+this is where I am at
+
+
+
 
 
 
