@@ -302,12 +302,28 @@ SELECT SUM(price)
 FROM product;
 
 
---Using the MAX and MIN functions
-this is where I am at
+--37. Using the MAX and MIN functions
+SELECT MAX(salary), MIN(Salary) 
+FROM employee; 
 
+SELECT department_id, MAX(salary), MIN(salary)
+FROM employee
+GROUP BY department_id;
 
+SELECT MIN(hire_date)
+FROM employee;
 
+SELECT MIN(last_name)
+FROM employee;
 
+--38. Using the AVG function
+SELECT AVG(salary)
+FROM employee;
+
+SELECT department_id, AVG(salary)
+FROM employee
+GROUP BY department_id
+ORDER BY AVG(salary);
 
 
 
