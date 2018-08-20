@@ -325,11 +325,27 @@ FROM employee
 GROUP BY department_id
 ORDER BY AVG(salary);
 
+SELECT AVG(hire_date)
+FROM employee; --error since you can't AVG on a date
 
+--39. What are Table Aliases? 
+SELECT employee_id, first_name, last_name, e.salary
+FROM employee e
+Where e.salary < 30000;
 
+--40. Columns Aliases
+SELECT employee_id, first_name, last_name, e.salary AS "Annual Salary"
+FROM employee e;
 
+SELECT employee_id, first_name, last_name, e.salary AS "Annual Salary", e.salary/12 AS monthly_salary
+FROM employee e;
 
+SELECT department_id, COUNT(*) AS NUM_OF_EMPLOYEES
+FROM employee
+GROUP BY department_id
+ORDER BY department_id;
 
+--42. Inner Join
 
 
 
