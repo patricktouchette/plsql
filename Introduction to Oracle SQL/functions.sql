@@ -81,5 +81,40 @@ ADD_MONTHS(SYSDATE, 20)
 FROM dual;
 
 
+--55. Data Types and Conversion Functions
+SELECT first_name,
+last_name,
+hire_date,
+TO_CHAR(hire_date, 'YYYY--MM--DD')
+FROM employee;
 
+SELECT TO_DATE('2017_05_28', 'YYYY_MM_DD')
+FROM dual;
+
+SELECT TO_NUMBER('200')
+FROM dual;
+
+--56. The CASE statement
+SELECT product_id,
+product_name,
+price,
+CASE
+    WHEN price > 200 THEN 'OVER 200'
+    WHEN price > 100 AND price <= 200 THEN 'Between 100 and 200'
+    WHEN price <= 100 THEN 'LESS than 100'
+    ELSE 'no price'
+END price_group
+FROM product;
+
+--Example with lots of code
+SELECT customer_id,
+first_name,
+last_name,
+address_state,
+CASE
+    WHEN address_state IN ('NY', 'SC', 'FL', 'IN') THEN 'East'
+    WHEN address_state IN ('CA', 'OR', 'TX') THEN 'West'
+    ELSE 'Unknown'
+END state_group
+FROM customer;
 
